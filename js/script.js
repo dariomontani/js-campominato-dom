@@ -71,20 +71,29 @@ play.addEventListener('click', function(){
 // In seguito l'utente clicca su una cella: se il numero è presente nella lista dei numeri generati - abbiamo calpestato una bomba - la cella si colora di rosso e la partita termina, altrimenti la cella cliccata si colora di azzurro e l'utente può continuare a cliccare sulle altre celle.La partita termina quando il giocatore clicca su una bomba o raggiunge il numero massimo possibile di numeri consentiti.Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha cliccato su una cella che non era una b.
 
 // genero 16 numeri casuali senza duplicati
-function numeriCasuali(min, max) {
-    const arraySedici = [];
-    for (let i = 0; i < 16; i++) {
-        let numeriCasuali = Math.floor(Math.random() * (max - min)) + min;
-        while (!(arraySedici.includes(numeriCasuali))) {
-            arraySedici.push(numeriCasuali);
-            i++;
+// function numeriCasuali(min, max) {
+//     const arraySedici = [];
+//     for (let i = 0; i < 16; i++) {
+//         let numeriCasuali = Math.floor(Math.random() * (max - min)) + min;
+//         while (!(arraySedici.includes(numeriCasuali))) {
+//             arraySedici.push(numeriCasuali);
+//         }
+//     }
+//     return arraySedici;
+// }
+
+
+
+function generateBombs(min, max) {
+    const bombs = [];
+    while (bombs.length < 16) {
+        const bomb = Math.floor(Math.random() * (max - min + 1)) + min;
+        if (!bombs.includes(bomb)) {
+            bombs.push(bomb);
         }
     }
-    return arraySedici;
+    return bombs;
 }
 
-let sediciNumeri = numeriCasuali(1, 16);
-console.log(sediciNumeri);
-
-// quadrati.addEventListener('click', function(){
-// });
+let bombe = generateBombs(1, 16);
+console.log(bombe);
